@@ -1,0 +1,42 @@
+class Solution {
+public:
+    string mergeAlternately(string word1, string word2) {
+        int len1 = word1.size(); int len2 = word2.size();
+
+        if(len1 < len2)
+        {
+            // append contents of string 1 to string 2
+            int i=0,count = 0;
+            while(i<len2 && count <len1) 
+            {
+                word2.insert(i,1,word1[count]);
+                i+=2;
+                count++;
+            }
+
+            return word2;
+        }
+
+        else if (len1 > len2) 
+        {
+            // append characters from string 2 to string 1
+            int i=1,count=0;
+            while(i<len1 && count<len2)
+            {
+                word1.insert(i,1,word2[count++]); 
+                i=i+2;
+            }
+            return word1;
+        }
+
+        string merged = "";
+        int i=0,count=0;
+        while(count<len1)
+        {
+            merged = merged + word1[count];
+            merged = merged + word2[count++];
+        }
+
+        return merged;
+    }
+};
