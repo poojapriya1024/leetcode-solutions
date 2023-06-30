@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int lastNonZeroFoundAt=0,len=nums.size();
+        if (len == 0 || len == 1) return;
+
+        for(int j=0;j<len;j++)
+        {
+            if(nums[j] != 0) 
+            //we start filling the array with non-zero replacements and 
+            //keep track of the index
+                nums[lastNonZeroFoundAt++] = nums[j];
+        }
+
+        while(lastNonZeroFoundAt < len)
+            nums[lastNonZeroFoundAt++] = 0;
+            //nums.push_back(0);lastNonZeroFoundAt--
+    }
+};
