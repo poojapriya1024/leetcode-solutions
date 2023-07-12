@@ -1,0 +1,32 @@
+class Solution {
+public:
+    string removeStars(string s) {
+        stack<char> stck; //initialize an empty stack
+       
+       for(int i=0;i<s.length();i++)
+       {
+           if (s[i] != '*') // non-star character
+                stck.push(s[i]);
+           else if (!stck.empty())
+               stck.pop(); //pop the top most character
+       }
+
+       //move all the contents to an auxiliary stack
+       stack<char> auxStack;
+       while(!stck.empty())
+       {
+           auxStack.push(stck.top());
+           stck.pop();
+       }
+
+        //construct the string using the elements of the auxStack
+        string result = "";
+        while(!auxStack.empty())
+        {
+            result += auxStack.top();
+            auxStack.pop();
+        }
+        return result;
+
+    }
+};
