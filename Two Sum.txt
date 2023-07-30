@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+       //create a hash map
+       unordered_map<int,int> myMap;
+       //create the solution array
+       vector<int> solution;
+
+       //filling the hash map with each element's index
+       for(int el=0;el<nums.size();el++)
+       {   
+           //insert the element and it's index 
+           myMap.insert({nums[el],el});
+       }
+       
+        for(int i=0;i<nums.size();i++)
+        {
+           //search if (target - nums[i]) is present in the hash map
+            int temp = target - nums[i];
+            if(myMap.find(temp) != myMap.end() && myMap[temp] != i ) //if temp is present
+            {
+                solution.push_back(i);
+                solution.push_back(myMap[temp]);
+                break;
+            }
+        }
+        return solution;
+    }
+};
