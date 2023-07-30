@@ -1,0 +1,44 @@
+class Solution {
+public:
+
+   void sortString(string word, unordered_map<string, vector<string>>& myMap)
+{
+    string str = word;
+    sort(str.begin(), str.end());
+
+    if (myMap.find(str) != myMap.end())
+    {
+        // push the original word as the value
+        myMap[str].push_back(word);
+    }
+    else
+    {
+        // insert a new entry in the unordered_map
+        myMap.insert({str, {word}});
+    }
+}
+
+    vector<vector<string>> groupAnagrams(vector<string>& strs) {
+       
+        unordered_map<string,vector<string>> myMap;
+        vector<vector<string>> solution;
+
+
+        if(strs.size() == 1)
+        {
+            solution.push_back(strs);
+            return solution;
+        }
+
+        for(int i=0;i<strs.size();i++)
+            //sort each element in the list and check if the sorted word is already in the map
+            sortString(strs[i],myMap);
+
+        for(auto &word:myMap)
+        {
+            solution.push_back(word.second);
+        }
+        return solution;
+        
+    }
+};
