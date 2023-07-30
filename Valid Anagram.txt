@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isAnagram(std::string s, std::string t) {
+        if (s.length() != t.length()) {
+            return false; // Anagrams must have the same length
+        }
+
+       unordered_map<char,int> countS;
+       unordered_map<char,int> countT;
+
+        // finding the frequency of each character in string s
+        for(char ch : s)
+            countS[ch]++;
+
+        //finding the frequency of each character in string t
+        for(char ch : t)
+            countT[ch]++;
+ 
+        // checking if the two maps are identical 
+        return countS == countT;
+
+        
+    }
+};
