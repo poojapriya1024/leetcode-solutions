@@ -1,0 +1,39 @@
+class Solution {
+public:
+
+    struct Compare
+    {
+        bool operator()(const pair<int,int>& p1, const pair<int,int>& p2)
+        {
+            return p1.second < p2.second; 
+            // return if the frequency of p1 is greater than that of p2
+        }
+    };
+
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+
+        if(nums.size() == 1 && k == 1)
+            return nums;
+
+        unordered_map<int,int> myMap;
+        for(int num : nums)
+            myMap[num]++;
+
+        priority_queue<pair<int,int>,vector<pair<int,int>>,Compare> myPQ;
+
+        for(auto &el : myMap)
+            myPQ.push(make_pair(el.first,el.second));
+            //insert all the elements in the map into the pq
+
+        vector<int> solution;
+        
+        //finally, pop the top most elements k times
+        for(int i=0;i<k;i++)
+        {
+            solution.push_back(myPQ.top().first);
+            myPQ.pop();
+        }
+
+        return solution;
+    }
+};
