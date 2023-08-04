@@ -1,0 +1,32 @@
+class Solution {
+public:
+    bool isValidSudoku(vector<vector<char>>& board) {
+    
+    vector<set<char>> column(9);
+    vector<set<char>> rows(9);
+    vector<set<char>> subBlock(9);
+
+    for(int i=0;i<9;i++)
+    {
+        for(int j=0;j<9;j++)
+        {
+            char ch = board[i][j];
+            if(ch != '.')
+            {   
+                int subBlockIndex = (i / 3) * 3 + j / 3;
+                //check if it is present in the column,rows or any other sub block 
+                if(column[j].count(ch) || rows[i].count(ch) || subBlock[subBlockIndex].count(ch))
+                    return false;
+
+                column[j].insert(ch);
+                rows[i].insert(ch);
+                subBlock[subBlockIndex].insert(ch);
+
+            }
+        }
+    }
+
+    return true;
+
+    } 
+};
