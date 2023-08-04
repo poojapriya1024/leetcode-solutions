@@ -1,0 +1,23 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        if (s.length() == 0) return true;
+        if (t.length() == 0) return false;
+        int count=0,i=0;
+        while(i < t.length()) 
+        { 
+            // if any characters match 
+            if(t[i++] == s[count])
+            {   
+                // if we have reached the end of the string s
+                if(count == s.length()-1)
+                    return true;
+                count++;
+            }
+        }
+
+        return false;
+        
+        
+    }
+};
