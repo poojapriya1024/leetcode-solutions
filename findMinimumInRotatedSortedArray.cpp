@@ -6,18 +6,19 @@ public:
         if(n == 1)
             return nums[0];
 
-        int pivot = 0;
+        int l = 0, r = n - 1;
 
-        for(int i=0;i<n-1;i++)
+        while(l < r)
         {
-            if(nums[i] > nums[i+1])
-            {
-                pivot = i + 1;
-                break;
-            }
+            int mid = (l + r)/2;
+
+            if(nums[mid] > nums[r]) //pivot is in right subarray
+                l = mid + 1;
+            else  //search in the left subarray 
+                r = mid;
         }
 
-        return nums[pivot];
+        return nums[l];
            
     }
 };
