@@ -1,0 +1,68 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+class Solution {
+
+private:
+
+ListNode* reverse(ListNode* head)
+{
+    ListNode* curr = head;
+    ListNode* prev = nullptr;
+    ListNode* next = head;
+
+    while(curr != nullptr)
+    {
+        next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }
+
+    return prev;
+}
+
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        
+        if(head->next == nullptr)
+            return nullptr;
+        
+        // reverse the list
+        head = reverse(head);
+
+        if(n == 1) // the first node to be deleted
+        {
+            head = head->next;
+            head = reverse(head);
+            return head;
+        }
+
+        ListNode* curr = head;
+        int count = 1;
+
+        // find the node just before the node to be deleted
+        while(curr != nullptr && count < n - 1)
+        {
+            curr = curr->next;
+            count++;
+        }
+
+        //now, curr is the node just before the node to be deleted or curr is null
+
+        ListNode* nodeToBeDeleted = curr->next;
+        curr->next = nodeToBeDeleted->next; // break the link
+        nodeToBeDeleted->next = nullptr;
+
+        head = reverse(head);
+        return head; 
+
+    }
+};
