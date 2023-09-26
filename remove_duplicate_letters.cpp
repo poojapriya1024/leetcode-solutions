@@ -1,7 +1,6 @@
 class Solution {
 public:
     string removeDuplicateLetters(string s) {
-        
         int slen = s.length();
 
         if(slen == 1)
