@@ -6,7 +6,9 @@ public:
 
         if(n == 1)
             return nums;
-
+        
+        sort(nums.begin(), nums.end());
+        
         int evenIndex = 0;
         int oddIndex = n-1;
         vector<int> solution(n);
