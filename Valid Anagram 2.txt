@@ -7,5 +7,6 @@ public:
 
        // after sorting, s and t must be same as they are made of the same characters
        return (s == t);
+
     }
 };
