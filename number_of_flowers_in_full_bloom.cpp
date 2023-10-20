@@ -20,7 +20,6 @@ public:
            const int ended = lower_bound(ends.begin(), ends.end(), p) - ends.begin();
            solution.push_back(started - ended);
         }
-
         return solution;
     }
 };
