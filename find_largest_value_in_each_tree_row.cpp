@@ -34,25 +34,22 @@ private:
                     if(curr->val >= tempMax) {
                         tempMax = curr->val;
                         foundMax = 1;
-
                     }
                     
                     //push it's child nodes to the queue
                     q.push(curr->left);
                     q.push(curr->right);
                 }
-
                 j++;
-
             }
 
             //add the maximum element of this row to solution
             if(foundMax)
                 solution.push_back(tempMax);
         }
-
         return;
     }
+
 public:
     vector<int> largestValues(TreeNode* root) {
         
@@ -62,6 +59,5 @@ public:
         
         largestValuesHelper(root, solution);
         return solution;
-        
     }
 };
