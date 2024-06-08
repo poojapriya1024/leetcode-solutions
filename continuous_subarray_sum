@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        
+        int n = nums.size();
+
+        if(n == 1) //length is not atleast 2
+            return false;
+        
+        unordered_map<int,int> map; //to store the remainder and index
+        map.insert({0,-1});
+        int curr_sum = 0;
+
+        for(int i=0;i<n;i++)
+        {
+            curr_sum += nums[i];
+
+            if(map.find(curr_sum % k) == map.end())
+            {
+                map.insert({curr_sum % k, i});
+                continue;
+            }
+            
+            // find if the length of the subarray is > 2
+            if(i - map[curr_sum % k] >= 2)
+                return true;
+        }
+
+        return false;
+    }
+};
